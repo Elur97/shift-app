@@ -17,6 +17,8 @@ import {
   updateDoc,
   deleteDoc,
 } from 'firebase/firestore';
+import Link from 'next/link';
+
 
 //パラメータの初期化
 
@@ -174,7 +176,7 @@ export default function ShiftInputPage() {
             localStorage.setItem('employeeName', e.target.value);
           }}
           className="p-2 border rounded"
-          placeholder="従業員名を入力"
+          placeholder="従業員名を入力(必須)"
         />
       </div>
 
@@ -253,7 +255,7 @@ export default function ShiftInputPage() {
                   checked={isHolidayRequest}
                   onChange={(e) => setIsHolidayRequest(e.target.checked)}
                 />
-                希望休（この日は勤務できません）
+                希望休
               </label>
 
               {!isHolidayRequest && (
@@ -310,6 +312,26 @@ export default function ShiftInputPage() {
           </div>
         </div>
       )}
+<div
+  className="
+    fixed
+    bottom-4 left-1/2 transform -translate-x-1/2
+    md:bottom-auto md:left-auto md:top-8 md:right-4 md:transform-none
+    z-50
+  "
+>
+  <Link
+    href="/"
+    className="
+      md:px-6 md:py-3 py-2
+      bg-blue-500 text-white rounded hover:bg-blue-800 text-lg
+    "
+  >
+    トップページに戻る
+  </Link>
+</div>
+
+
     </div>
   );
 }

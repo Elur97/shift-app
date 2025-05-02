@@ -136,17 +136,15 @@ export default function ShiftApprovalPage() {
 
     if (isHolidayRequest) {
       payload.title      = '希望休';
-      // 仮の時間を入れる
       payload.startTime  = '09:00';
       payload.endTime    = '10:00';
     
       newEvent = {
         ...newEvent,
         title: '希望休',
-        // ダミー時間で start/end を生成
         start: new Date(`${dateStr}T09:00:00`),
         end:   new Date(`${dateStr}T10:00:00`),
-        allDay: false,    // allDay:true のままだと時刻が無視されるのでご注意
+        allDay: false,   
       };
     
     } else {
@@ -227,17 +225,17 @@ export default function ShiftApprovalPage() {
     <div className="p-4">
       <h1 className="text-xl font-bold mb-4">シフト承認画面（管理者）</h1>
 
-      {/* 従業員名 */}
       <div className="mb-4">
-        <label className="block mb-1">従業員名</label>
+        <label className="text-lg">従業員名:</label>
         <input
           type="text"
-          className="border p-2 w-full"
           value={employeeName}
-          onChange={e => {
+          onChange={(e) => {
             setEmployeeName(e.target.value);
             localStorage.setItem('employeeName', e.target.value);
           }}
+          className="p-2 border rounded"
+          placeholder="従業員名を入力(必須)"
         />
       </div>
 
@@ -248,7 +246,7 @@ export default function ShiftApprovalPage() {
         headerToolbar={{
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek',
+          right: 'dayGridMonth',
         }}
         locale={jaLocale}
         editable={!isApproved}
